@@ -1,0 +1,68 @@
+{
+  "locale": {
+    "dir": "ltr",
+    "en-US": "English",
+    "fr-FR": "Français",
+    "ar-AR": "العربية"
+  },
+  "site": {
+    "name": "Le Comptoir de la Presse"
+  },
+  "themes": {
+    "light": "Clair",
+    "dark": "Sombre"
+  },
+  "cookies": {
+    "bar": {
+      "title": "🍪 Salut. Ce site utilise des cookies",
+      "description": "Nous utilisons des cookies et des technologies similaires pour personnaliser le contenu et offrir une meilleure expérience. Vous pouvez choisir de les personnaliser en cliquant sur le bouton personnaliser."
+    },
+    "modal": {
+      "title": "Personnaliser",
+      "description": "Nous utilisons différents types de cookies pour optimiser votre expérience sur notre site Web. Cliquez sur les catégories ci-dessous pour en savoir plus sur leurs objectifs. Vous pouvez choisir les types de cookies à autoriser et modifier ultérieurement vos préférences. N'oubliez pas que la désactivation des cookies peut affecter votre expérience.",
+      "privacy-policy": "Politique de confidentialité"
+    },
+    "necessary": {
+      "title": "Cookies strictement nécessaires",
+      "description": "Ces cookies sont indispensables au bon fonctionnement de mon site internet. Sans ces cookies, le site Web ne fonctionnerait pas correctement"
+    }
+  },
+  "error": {
+    "return": "Retour",
+    "page-not-found": "Page non trouvée"
+  },
+  "pages": {
+    "index": {
+      "meta": {
+        "title": "Shop",
+        "description": "Shop le comptoir de la presse"
+      },
+      "link": "Shop"
+    },
+    "new": {
+      "meta": {
+        "title": "Nouveautés",
+        "description": "Nouveautés au comptoir de la presse"
+      },
+      "link": "Nouveautés"
+    },
+    "press": {
+      "meta": {
+        "title": "Presse",
+        "description": "Site le Comptoir de la Presse"
+      },
+      "link": "Presse"
+    },
+    "login": {
+      "meta": {
+        "title": "Se connecter",
+        "description": "Page de connexion au shop Comptoir de la Presse"
+      },
+      "emailPlaceholder": "E-MAIL",
+      "passwordPlaceholder": "MOT DE PASSE",
+      "signUpButton": "Se connecter",
+      "signInButton": "Créer un compte",
+      "link": "Se Connecter"
+    }
+  }
+}
