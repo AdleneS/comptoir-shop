@@ -2,35 +2,33 @@
 const { t } = useI18n();
 const { isLoggedIn } = useAuth();
 const supabase = useSupabase();
+const config = useRuntimeConfig();
+
+const { data, error } = await supabase.storage
+  .from(config.public.supabaseBucketName)
+  .createSignedUrl("assets/logo.svg", 3600);
 </script>
 <template>
   <nav
-    class="p-3 py-5 flex justify-between bg-black dark:bg-white"
+    class="p-3 py-5 flex justify-between bg-black dark:bg-white fixed w-full top-0 z-10"
     :class="t('locale.dir') === 'rtl' ? 'flex-row-reverse' : 'flex-row'"
   >
     <ul class="flex justify-center items-center align-middle gap-2">
-      <li>
-        <NuxtLink
-          class="p-2 px-3 hover:bg-gray-100 hover:dark:bg-slate-600 text-gray-700 dark:text-white hover:dark:text-white"
-          to="/"
-          >{{ t("pages.index.link") }}</NuxtLink
-        >
+      <li class="mr-24">
+        <img
+          class="w-[5rem] absolute left-4 top-[1.3rem] revert"
+          :src="data?.signedUrl"
+          alt="Comptoir Logo"
+        />
       </li>
       <li>
-        <NuxtLink
-          class="rounded-md dark:bg-slate-700 p-2 px-3 hover:bg-gray-100 hover:dark:bg-slate-600 text-gray-700 dark:text-white hover:dark:text-white"
-          to="/minimal"
-        >
-          {{ t("pages.new.link") }}
-        </NuxtLink>
+        <NavBarButton link="/" label="index" />
       </li>
       <li>
-        <NuxtLink
-          class="rounded-md dark:bg-slate-700 p-2 px-3 hover:bg-gray-100 hover:dark:bg-slate-600 text-gray-700 dark:text-white hover:dark:text-white"
-          to="/minimal"
-        >
-          {{ t("pages.press.link") }}
-        </NuxtLink>
+        <NavBarButton link="/new" label="new" />
+      </li>
+      <li>
+        <NavBarButton link="https://press.comptoir.com" label="press" />
       </li>
     </ul>
     <div class="flex justify-end">
@@ -40,12 +38,7 @@ const supabase = useSupabase();
         />
         <LanguageSelector />
         <div v-if="!isLoggedIn">
-          <NuxtLink
-            class="p-2 px-3 text-white dark:text-black hover:underline"
-            to="/login"
-          >
-            {{ t("pages.login.link") }}
-          </NuxtLink>
+          <NavBarButton link="/login" label="login" />
         </div>
         <div v-if="isLoggedIn">
           <button
@@ -59,3 +52,9 @@ const supabase = useSupabase();
     </div>
   </nav>
 </template>
+
+<style lang="postcss">
+ul .router-link-exact-active {
+  @apply underline;
+}
+</style>

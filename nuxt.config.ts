@@ -8,6 +8,7 @@ export default defineNuxtConfig({
       baseUrl: process.env.NUXT_PUBLIC_BASE_URL || "http://localhost:3000",
       supabaseUrl: process.env.SUPABASE_URL,
       supabasePublishableKey: process.env.SUPABASE_PUBLISHABLE_KEY,
+      supabaseBucketName: process.env.SUPABASE_BUCKET_NAME,
     },
   },
   modules: [

@@ -18,3 +18,7 @@ html {
 html.dark {
   @apply bg-neutral-900;
 }
+
+body {
+  @apply overflow-hidden;
+}

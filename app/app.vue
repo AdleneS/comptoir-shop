@@ -43,10 +43,8 @@ useHead({
       class="fixed inset-0 z-50 flex items-center justify-center bg-white transition-opacity duration-300 dark:bg-gray-900"
     />
     <NuxtLayout>
-      <div>
-        <CookieBanner />
-        <NuxtPage />
-      </div>
+      <CookieBanner />
+      <NuxtPage />
     </NuxtLayout>
   </div>
 </template>
