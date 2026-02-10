@@ -64,5 +64,8 @@
       "signInButton": "Créer un compte",
       "link": "Se Connecter"
     }
+  },
+  "productSection": {
+    "title": "Le Produit"
   }
 }
