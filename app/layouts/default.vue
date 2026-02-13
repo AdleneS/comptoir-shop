@@ -11,7 +11,7 @@ const { t } = useI18n();
         <slot />
       </main>
       <footer
-        class="dark:text-300 py-20 text-center text-sm text-gray-500 dark:text-gray-400"
+        class="bg-neutral-900 dark:text-300 py-20 text-center text-sm text-gray-500 dark:text-gray-400"
       >
         <p>© {{ new Date().getFullYear() }} - {{ $t("site.name") }}</p>
       </footer>

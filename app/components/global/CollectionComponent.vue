@@ -2,16 +2,19 @@
 const { t } = useI18n();
 const supabase = useSupabase();
 const config = useRuntimeConfig();
-const { products, error } = await useGetProducts(supabase, config);
+const { products, error } = await useGetProducts(supabase, config, 10);
 </script>
+
 <template>
-  <div class="p-8 w-screen bg-white items-center flex flex-col gap-8">
+  <div
+    class="p-8 w-screen h-[calc(100vh-5rem)] bg-white items-center flex flex-col gap-8"
+  >
     <h1 class="text-black flex gap-2">
       <span class="text-6xl font-greatVibes">
-        {{ t("pages.index.productSection.title1") }}
+        {{ t("pages.collection.title1") }}
       </span>
       <span class="text-6xl font-bold font-dmSans mt-8">
-        {{ t("pages.index.productSection.title2") }}
+        {{ t("pages.collection.title2") }}
       </span>
     </h1>
     <div class="flex flex-col w-full gap-8">
@@ -29,15 +32,6 @@ const { products, error } = await useGetProducts(supabase, config);
         <div class="p-4">
           <h2 class="text-2xl font-bold text-black">{{ product.name }}</h2>
         </div>
-      </div>
-      <div class="justify-end flex">
-        <NuxtLink
-          to="/collection"
-          class="text-black hover:underline text-lg font-medium italic flex items-center group hover:scale-110 transition-transform duration-200"
-        >
-          <span>{{ t("pages.index.productSection.viewAll") }}</span>
-          <Icon name="material-symbols:arrow-right-alt" class="ml-2" />
-        </NuxtLink>
       </div>
     </div>
   </div>

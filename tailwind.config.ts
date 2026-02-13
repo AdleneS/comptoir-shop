@@ -1,4 +1,4 @@
-import { type Config } from "tailwindcss";
+import type { Config } from "tailwindcss";
 
 export default {
   // content: ["./src/**/*.{html,js}"],
@@ -10,6 +10,8 @@ export default {
       mono: ["monospace"],
       display: ["Inter"],
       body: ["Inter"],
+      greatVibes: ["Great Vibes"],
+      dmSans: ["DM Sans"],
     },
     extend: {
       spacing: {

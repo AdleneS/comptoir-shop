@@ -37,14 +37,24 @@
         "title": "Shop",
         "description": "Shop le comptoir de la presse"
       },
-      "link": "Shop"
-    },
-    "new": {
-      "meta": {
-        "title": "Nouveautés",
-        "description": "Nouveautés au comptoir de la presse"
+      "link": "Shop",
+      "productSection": {
+        "title1": "Le",
+        "title2": "Produit",
+        "viewAll": "Voir tous les produits"
       },
-      "link": "Nouveautés"
+      "heroSection": {
+        "title": "le comptoir de la presse"
+      }
+    },
+    "collection": {
+      "meta": {
+        "title": "Collection",
+        "description": "Collection le comptoir de la presse"
+      },
+      "link": "Collection",
+      "title1": "La",
+      "title2": "Collection"
     },
     "press": {
       "meta": {
@@ -64,8 +74,5 @@
       "signInButton": "Créer un compte",
       "link": "Se Connecter"
     }
-  },
-  "productSection": {
-    "title": "Le Produit"
   }
 }

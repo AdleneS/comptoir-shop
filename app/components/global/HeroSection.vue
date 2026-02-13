@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const supabase = useSupabase();
 const config = useRuntimeConfig();
+const { t } = useI18n();
 
 const { data, error } = await supabase.storage
   .from(config.public.supabaseBucketName)
@@ -21,7 +22,9 @@ const { data, error } = await supabase.storage
     />
     <div class="flex flex-col items-center gap-4 text-white text-4xl">
       <div>C LOGO</div>
-      <div>LE COMPTOIR DE LA PRESSE</div>
+      <div class="font-extralight">
+        {{ t("pages.index.heroSection.title") }}
+      </div>
     </div>
   </div>
 </template>
