@@ -1,8 +1,10 @@
 <script setup lang="ts">
 const { t } = useI18n();
-const supabase = useSupabase();
-const config = useRuntimeConfig();
-const { products, error } = await useGetProducts(supabase, config);
+const { getFeaturedProducts } = useCatalog();
+const { data: featured } = await useAsyncData(
+  "featured-products",
+  getFeaturedProducts,
+);
 </script>
 <template>
   <div class="p-8 w-screen bg-white items-center flex flex-col gap-8">
@@ -14,31 +16,20 @@ const { products, error } = await useGetProducts(supabase, config);
         {{ t("pages.index.productSection.title2") }}
       </span>
     </h1>
-    <div class="flex flex-col w-full gap-8">
-      <div
-        v-for="product in products"
+
+    <div class="flex flex-wrap justify-center gap-8">
+      <ProductCard
+        v-for="product in featured"
         :key="product.id"
-        class="w-[30rem] h-[40rem] bg-gray-100 flex flex-col"
-      >
-        <img
-          v-if="product.id"
-          :src="product.imageUrl"
-          alt="Product Image"
-          class="w-full h-[80%] object-contain flex-1"
-        />
-        <div class="p-4">
-          <h2 class="text-2xl font-bold text-black">{{ product.name }}</h2>
-        </div>
-      </div>
-      <div class="justify-end flex">
-        <NuxtLink
-          to="/collection"
-          class="text-black hover:underline text-lg font-medium italic flex items-center group hover:scale-110 transition-transform duration-200"
-        >
-          <span>{{ t("pages.index.productSection.viewAll") }}</span>
-          <Icon name="material-symbols:arrow-right-alt" class="ml-2" />
-        </NuxtLink>
-      </div>
+        :product="product"
+      />
     </div>
+    <NuxtLink
+      to="/collection"
+      class="ml-auto text-black hover:underline text-lg font-medium italic flex items-center hover:scale-110 transition-transform duration-200"
+    >
+      {{ t("pages.index.productSection.viewAll") }}
+      <Icon name="material-symbols:arrow-right-alt" class="ml-2" />
+    </NuxtLink>
   </div>
 </template>

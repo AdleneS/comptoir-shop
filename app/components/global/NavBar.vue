@@ -31,7 +31,11 @@ const { data, error } = await supabase.storage
         <NavBarButton link="https://press.comptoir.com" label="press" />
       </li>
     </ul>
-    <div class="flex justify-center items-center font-black text-4xl">CDLP</div>
+    <div
+      class="flex justify-center items-center font-black text-4xl absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+    >
+      CDLP
+    </div>
     <div class="flex justify-end">
       <div class="flex w-full items-center justify-center gap-2">
         <ThemeSwitcher

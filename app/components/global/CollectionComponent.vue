@@ -1,8 +1,9 @@
 <script setup lang="ts">
 const { t } = useI18n();
-const supabase = useSupabase();
-const config = useRuntimeConfig();
-const { products, error } = await useGetProducts(supabase, config, 10);
+const { getProducts } = useCatalog();
+const { data: products } = await useAsyncData("products-collection", () =>
+  getProducts(1),
+);
 </script>
 
 <template>
@@ -17,22 +18,12 @@ const { products, error } = await useGetProducts(supabase, config, 10);
         {{ t("pages.collection.title2") }}
       </span>
     </h1>
-    <div class="flex flex-col w-full gap-8">
-      <div
+    <div class="flex w-full gap-8">
+      <ProductCard
         v-for="product in products"
         :key="product.id"
-        class="w-[30rem] h-[40rem] bg-gray-100 flex flex-col"
-      >
-        <img
-          v-if="product.id"
-          :src="product.imageUrl"
-          alt="Product Image"
-          class="w-full h-[80%] object-contain flex-1"
-        />
-        <div class="p-4">
-          <h2 class="text-2xl font-bold text-black">{{ product.name }}</h2>
-        </div>
-      </div>
+        :product="product"
+      />
     </div>
   </div>
 </template>

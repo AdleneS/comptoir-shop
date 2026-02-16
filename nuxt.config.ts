@@ -9,6 +9,7 @@ export default defineNuxtConfig({
       supabaseUrl: process.env.SUPABASE_URL,
       supabasePublishableKey: process.env.SUPABASE_PUBLISHABLE_KEY,
       supabaseBucketName: process.env.SUPABASE_BUCKET_NAME,
+      supabasePublicBucketName: process.env.SUPABASE_PUBLIC_BUCKET_NAME,
     },
   },
   modules: [

@@ -23,7 +23,7 @@ html {
   }
 }
 html.dark {
-  @apply bg-neutral-900;
+  @apply bg-white;
 }
 
 body {

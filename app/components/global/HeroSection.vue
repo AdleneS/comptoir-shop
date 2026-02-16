@@ -2,23 +2,33 @@
 const supabase = useSupabase();
 const config = useRuntimeConfig();
 const { t } = useI18n();
+const videoUrl = ref<string | null>(null);
+const loaded = ref(false);
 
-const { data, error } = await supabase.storage
-  .from(config.public.supabaseBucketName)
-  .createSignedUrl("assets/hero-video.mp4", 3600);
+onMounted(() => {
+  // simule "lazy load" après que le DOM est prêt
+  const url = supabase.storage
+    .from(config.public.supabasePublicBucketName)
+    .getPublicUrl("assets/hero.mp4").data.publicUrl;
+  videoUrl.value = url;
+});
 </script>
 
 <template>
   <div
     class="flex justify-center items-center overflow-y-hidden h-[calc(100vh-5rem)]"
   >
+    <div v-if="!loaded" class="w-full h-full bg-black absolute" />
+
     <video
+      v-if="videoUrl"
       autoplay
       loop="true"
       muted
       class="w-full h-full object-cover absolute -z-10"
       type="video/mp4"
-      :src="data?.signedUrl"
+      :src="videoUrl"
+      @canplay="loaded = true"
     />
     <div class="flex flex-col items-center gap-4 text-white text-4xl">
       <div>C LOGO</div>
@@ -26,5 +36,6 @@ const { data, error } = await supabase.storage
         {{ t("pages.index.heroSection.title") }}
       </div>
     </div>
+    <div class="w-full h-16 absolute bottom-0" />
   </div>
 </template>

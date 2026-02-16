@@ -73,6 +73,13 @@
       "signUpButton": "Se connecter",
       "signInButton": "Créer un compte",
       "link": "Se Connecter"
+    },
+    "product": {
+      "meta": {
+        "title": "Produit",
+        "description": "Page du produit"
+      },
+      "link": "Produit"
     }
   }
 }
