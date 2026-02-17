@@ -25,7 +25,7 @@ function switchLanguage(lang: string) {
 <template>
   <div ref="dropdownRef" class="w-auto">
     <button
-      class="flex items-center gap-2 rounded-lg p-2 px-4 text-white dark:text-black"
+      class="flex items-center gap-2 rounded-lg p-2 px-4 text-white"
       :class="[
         { 'flex-row-reverse': t('locale.dir') === 'rtl' },
         isOpen

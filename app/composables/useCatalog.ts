@@ -1,15 +1,7 @@
 export const useCatalog = () => {
   const supabase = useSupabase();
-  const config = useRuntimeConfig();
+  const { getImageUrl } = useProductImage();
   const PAGE_SIZE = 10;
-
-  const getImageUrl = (slug: string, file = "cover.png") => {
-    const { data } = supabase.storage
-      .from(config.public.supabasePublicBucketName)
-      .getPublicUrl(`products/${slug}/${file}`);
-
-    return data.publicUrl;
-  };
 
   const getProducts = async (page: number = 1) => {
     const from = (page - 1) * PAGE_SIZE;
@@ -37,7 +29,7 @@ export const useCatalog = () => {
     if (error) throw error;
     return data.map((p) => ({
       ...p,
-      image: getImageUrl(p.slug),
+      image: getImageUrl?.(p.slug),
     }));
   };
 
@@ -64,13 +56,12 @@ export const useCatalog = () => {
     if (error) throw error;
     return data.map((p) => ({
       ...p,
-      image: getImageUrl(p.slug),
+      image: getImageUrl?.(p.slug),
     }));
   };
 
   return {
     getProducts,
     getFeaturedProducts,
-    getImageUrl,
   };
 };

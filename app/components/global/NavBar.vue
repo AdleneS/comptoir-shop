@@ -10,7 +10,7 @@ const { data, error } = await supabase.storage
 </script>
 <template>
   <nav
-    class="p-3 py-5 flex justify-between bg-black dark:bg-white fixed w-full top-0 z-10"
+    class="text-white mt-4 p-3 py-5 backdrop-blur-lg rounded-2xl flex justify-between bg-[#000b] fixed w-1/2 top-0 z-10"
     :class="t('locale.dir') === 'rtl' ? 'flex-row-reverse' : 'flex-row'"
   >
     <ul class="flex justify-center items-center align-middle gap-2">
@@ -38,16 +38,14 @@ const { data, error } = await supabase.storage
     </div>
     <div class="flex justify-end">
       <div class="flex w-full items-center justify-center gap-2">
-        <ThemeSwitcher
-          class="rounded-lg hover:bg-gray-100 p-2 dark:hover:bg-slate-700 text-white dark:text-black"
-        />
+        <ThemeSwitcher class="rounded-lg hover:bg-gray-100 p-2 text-white" />
         <LanguageSelector />
         <div v-if="!isLoggedIn">
           <NavBarButton link="/login" label="login" />
         </div>
         <div v-if="isLoggedIn">
           <button
-            class="p-2 px-3 text-white dark:text-black hover:underline"
+            class="p-2 px-3 text-white hover:underline"
             @click="() => supabase.auth.signOut()"
           >
             Logout

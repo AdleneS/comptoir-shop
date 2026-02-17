@@ -7,9 +7,7 @@ const { data: products } = await useAsyncData("products-collection", () =>
 </script>
 
 <template>
-  <div
-    class="p-8 w-screen h-[calc(100vh-5rem)] bg-white items-center flex flex-col gap-8"
-  >
+  <div class="p-8 pt-48 w-screen h-screen items-center flex flex-col gap-8">
     <h1 class="text-black flex gap-2">
       <span class="text-6xl font-greatVibes">
         {{ t("pages.collection.title1") }}

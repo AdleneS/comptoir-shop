@@ -1,16 +1,33 @@
 export const useProducts = () => {
   const supabase = useSupabase();
-
+  const { getProductImages } = useProductImage();
   const getProductBySlug = async (slug: string) => {
-    const { data, error } = await supabase
+    const { data: product, error } = await supabase
       .from("products")
-      .select("*")
+      .select(
+        `
+      *,
+      category:categories (
+        id,
+        name
+      ),
+      skus:products_skus (
+        price
+    )
+    `,
+        { count: "exact" },
+      )
       .is("deleted_at", null)
       .eq("slug", slug)
       .single();
 
-    if (error) throw error;
-    return data;
+    const images = await getProductImages(slug);
+
+    // 3. enrichir objet
+    return {
+      ...product,
+      images,
+    };
   };
 
   return { getProductBySlug };

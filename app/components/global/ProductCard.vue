@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { t } = useI18n();
-const props = defineProps({ product: { type: Object, default: null } });
+defineProps<{ product: { type: object; default: null } }>();
 </script>
 <template>
   <!-- <NuxtLink

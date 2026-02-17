@@ -8,16 +8,14 @@ const loaded = ref(false);
 onMounted(() => {
   // simule "lazy load" après que le DOM est prêt
   const url = supabase.storage
-    .from(config.public.supabasePublicBucketName)
-    .getPublicUrl("assets/hero.mp4").data.publicUrl;
+    .from(config.public.supabaseAssetsBucketName)
+    .getPublicUrl("hero.mp4").data.publicUrl;
   videoUrl.value = url;
 });
 </script>
 
 <template>
-  <div
-    class="flex justify-center items-center overflow-y-hidden h-[calc(100vh-5rem)]"
-  >
+  <div class="flex justify-center items-center overflow-y-hidden h-screen">
     <div v-if="!loaded" class="w-full h-full bg-black absolute" />
 
     <video

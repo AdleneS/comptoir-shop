@@ -10,12 +10,12 @@ useSeoMeta({
   description: t("pages.index.meta.description"),
 });
 definePageMeta({
-  layout: "default",
+  layout: "landing",
 });
 </script>
 
 <template>
-  <div class="justify-center w-full">
+  <div>
     <HeroSection />
     <ProductSection />
   </div>
