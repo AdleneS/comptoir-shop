@@ -31,6 +31,9 @@
     "return": "Retour",
     "page-not-found": "Page non trouvée"
   },
+  "nav": {
+    "account": "Mon Compte"
+  },
   "pages": {
     "index": {
       "meta": {
@@ -53,8 +56,8 @@
         "description": "Collection le comptoir de la presse"
       },
       "link": "Collection",
-      "title1": "La",
-      "title2": "Collection"
+      "title1": "Nos",
+      "title2": "Collections"
     },
     "press": {
       "meta": {
@@ -80,6 +83,14 @@
         "description": "Page du produit"
       },
       "link": "Produit"
+    },
+    "account": {
+      "meta": {
+        "title": "Mon compte",
+        "description": "Page de mon compte"
+      },
+      "link": "Mon Compte",
+      "logoutButton": "Se déconnecter"
     }
   }
 }

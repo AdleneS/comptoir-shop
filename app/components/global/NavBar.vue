@@ -4,9 +4,9 @@ const { isLoggedIn } = useAuth();
 const supabase = useSupabase();
 const config = useRuntimeConfig();
 
-const { data, error } = await supabase.storage
-  .from(config.public.supabaseBucketName)
-  .createSignedUrl("assets/logo.svg", 3600);
+const logoUrl = supabase.storage
+  .from(config.public.supabaseAssetsBucketName)
+  .getPublicUrl("logo.svg").data.publicUrl;
 </script>
 <template>
   <nav
@@ -16,8 +16,8 @@ const { data, error } = await supabase.storage
     <ul class="flex justify-center items-center align-middle gap-2">
       <li class="mr-24">
         <img
-          class="w-[5rem] absolute left-4 top-[1.3rem] revert"
-          :src="data?.signedUrl"
+          class="w-[5rem] absolute left-4 top-[1.3rem]"
+          :src="logoUrl"
           alt="Comptoir Logo"
         />
       </li>
@@ -36,23 +36,16 @@ const { data, error } = await supabase.storage
     >
       CDLP
     </div>
-    <div class="flex justify-end">
-      <div class="flex w-full items-center justify-center gap-2">
-        <ThemeSwitcher class="rounded-lg hover:bg-gray-100 p-2 text-white" />
-        <LanguageSelector />
-        <div v-if="!isLoggedIn">
-          <NavBarButton link="/login" label="login" />
-        </div>
-        <div v-if="isLoggedIn">
-          <button
-            class="p-2 px-3 text-white hover:underline"
-            @click="() => supabase.auth.signOut()"
-          >
-            Logout
-          </button>
-        </div>
-      </div>
-    </div>
+    <ul class="flex justify-end items-center align-middle gap-2">
+      <ThemeSwitcher class="rounded-lg hover:bg-gray-100 p-2 text-white" />
+      <LanguageSelector />
+      <li v-if="!isLoggedIn">
+        <NavBarButton link="/login" label="login" />
+      </li>
+      <li v-if="isLoggedIn">
+        <NavBarButton link="/account" label="account" />
+      </li>
+    </ul>
   </nav>
 </template>
 

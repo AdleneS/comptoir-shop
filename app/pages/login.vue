@@ -23,6 +23,7 @@ const handleAuth = async () => {
     console.error("Error signing in:", error);
   } else {
     console.log("Sign in successful:", email.value);
+    navigateTo("/");
   }
 };
 </script>
