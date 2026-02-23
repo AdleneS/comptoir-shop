@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { t } = useI18n();
-const supabase = useSupabase();
+const supabase = useSupabaseClient();
 const newPassword = ref("");
 const newPasswordCheck = ref("");
 
@@ -23,6 +23,7 @@ definePageMeta({
 });
 
 const handleUpdatePassword = async () => {
+  console.log("enter update password func");
   if (newPassword.value !== newPasswordCheck.value) {
     console.error("Passwords do not match");
     return;
@@ -68,5 +69,12 @@ const handleUpdatePassword = async () => {
         {{ t("pages.updatePassword.updateButton") }}
       </button>
     </form>
+    <a
+      class="text-sm text-gray-600 cursor-pointer hover:underline mt-4"
+      @click="navigateTo('/')"
+    >
+      >
+      {{ t("pages.updatePassword.backToHome") }}
+    </a>
   </div>
 </template>

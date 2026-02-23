@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { t } = useI18n();
 const { isLoggedIn } = useAuth();
-const supabase = useSupabase();
+const supabase = useSupabaseClient();
 const config = useRuntimeConfig();
 
 const logoUrl = supabase.storage

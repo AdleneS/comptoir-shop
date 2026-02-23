@@ -1,5 +1,5 @@
 export const useProductImage = () => {
-  const supabase = useSupabase();
+  const supabase = useSupabaseClient();
   const config = useRuntimeConfig();
 
   const getImageUrl = (slug: string, file = "cover.png") => {
@@ -11,7 +11,6 @@ export const useProductImage = () => {
   };
 
   const getProductImages = async (slug: string) => {
-    console.log(`/products/${slug}`);
     const { data, error } = await supabase.storage
       .from(config.public.supabaseProductsBucketName)
       .list(slug, { limit: 10 });

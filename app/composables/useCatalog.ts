@@ -1,5 +1,5 @@
 export const useCatalog = () => {
-  const supabase = useSupabase();
+  const supabase = useSupabaseClient();
   const { getImageUrl } = useProductImage();
   const PAGE_SIZE = 10;
 

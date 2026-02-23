@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const supabase = useSupabase();
+const supabase = useSupabaseClient();
 const config = useRuntimeConfig();
 const { t } = useI18n();
 const videoUrl = ref<string | null>(null);

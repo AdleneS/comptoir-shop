@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { t } = useI18n();
-const supabase = useSupabase();
+const supabase = useSupabaseClient();
 useHead({
   title: t("pages.forgetPassword.meta.title"),
   meta: [

@@ -20,7 +20,6 @@ const { data: product } = await useAsyncData(
   () => getProductBySlug(route.params.slug as string),
 );
 activeImage.value = product.value?.images[0] || "";
-console.log(product);
 </script>
 <template>
   <div class="p-8 pt-48 w-screen h-screen bg-white flex gap-8 justify-center">

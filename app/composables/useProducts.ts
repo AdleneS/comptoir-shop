@@ -1,5 +1,5 @@
 export const useProducts = () => {
-  const supabase = useSupabase();
+  const supabase = useSupabaseClient();
   const { getProductImages } = useProductImage();
   const getProductBySlug = async (slug: string) => {
     const { data: product, error } = await supabase

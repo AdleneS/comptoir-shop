@@ -80,7 +80,8 @@
       "resetPasswordDescription": "Entrez votre adresse e-mail ci-dessous et nous vous enverrons un lien pour réinitialiser votre mot de passe.",
       "backToLogin": "Retour à la connexion",
       "resetPasswordButton": "Réinitialiser le mot de passe",
-      "resetPasswordSuccess": "Un e-mail de réinitialisation du mot de passe a été envoyé à votre adresse e-mail."
+      "resetPasswordSuccess": "Un e-mail de réinitialisation du mot de passe a été envoyé à votre adresse e-mail.",
+      "credentialsError": "E-mail ou mot de passe incorrect."
     },
     "product": {
       "meta": {
@@ -95,7 +96,22 @@
         "description": "Page de mon compte"
       },
       "link": "Mon Compte",
-      "logoutButton": "Se déconnecter"
+      "logoutButton": "Se déconnecter",
+      "informationSection": {
+        "title": "Mes informations",
+        "firstName": "Prénom",
+        "lastName": "Nom",
+        "email": "E-mail",
+        "updatePasswordButton": "Mettre à jour le mot de passe"
+      },
+      "ordersSection": {
+        "title": "Mes commandes",
+        "orderNumber": "Numéro de commande",
+        "date": "Date",
+        "status": "Statut",
+        "total": "Total",
+        "noOrders": "Vous n'avez pas encore de commandes."
+      }
     },
     "updatePassword": {
       "meta": {
@@ -105,7 +121,9 @@
       "link": "Mettre à jour le mot de passe",
       "newPasswordPlaceholder": "Nouveau mot de passe",
       "confirmPasswordPlaceholder": "Confirmer le mot de passe",
-      "updateButton": "Mettre à jour le mot de passe"
+      "updateButton": "Mettre à jour le mot de passe",
+      "passwordMismatch": "Les mots de passe ne correspondent pas.",
+      "backToHome": "Retour à l'accueil"
     },
     "forgetPassword": {
       "meta": {

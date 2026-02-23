@@ -1,5 +1,5 @@
 export default defineNuxtPlugin(() => {
-  const supabase = useSupabase();
+  const supabase = useSupabaseClient();
   const user = useState("user", () => null);
 
   supabase.auth.onAuthStateChange((_, session) => {

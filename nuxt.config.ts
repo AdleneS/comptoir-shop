@@ -6,8 +6,6 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       baseUrl: process.env.NUXT_PUBLIC_BASE_URL || "http://localhost:3000",
-      supabaseUrl: process.env.SUPABASE_URL,
-      supabasePublishableKey: process.env.SUPABASE_PUBLISHABLE_KEY,
       supabaseBucketName: process.env.SUPABASE_BUCKET_NAME,
       supabaseProductsBucketName: process.env.SUPABASE_PRODUCTS_BUCKET_NAME,
       supabaseAssetsBucketName: process.env.SUPABASE_ASSETS_BUCKET_NAME,
@@ -24,6 +22,7 @@ export default defineNuxtConfig({
     "@nuxtjs/color-mode",
     "@nuxtjs/i18n",
     "@dargmuesli/nuxt-cookie-control",
+    "@nuxtjs/supabase",
   ],
   nitro: {
     compressPublicAssets: true,
@@ -129,5 +128,9 @@ export default defineNuxtConfig({
     },
     locales: ["en", "fr", "ar"],
   },
-  supabase: {},
+  supabase: {
+    redirect: false,
+    url: process.env.SUPABASE_URL,
+    key: process.env.SUPABASE_PUBLISHABLE_KEY,
+  },
 });

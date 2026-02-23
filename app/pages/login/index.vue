@@ -11,6 +11,7 @@ useSeoMeta({
 });
 definePageMeta({
   layout: "half",
+  middleware: "guest",
 });
 </script>
 <template>
@@ -26,7 +27,7 @@ definePageMeta({
         {{ t("pages.login.signInButton") }}
       </button>
       <a
-        class="text-sm text-gray-600 cursor-pointer hover:underline"
+        class="text-sm text-gray-600 cursor-pointer hover:underline mt-4 block w-fit"
         @click="navigateTo('/login/forget-password')"
       >
         {{ t("pages.login.forgetPassword") }}
