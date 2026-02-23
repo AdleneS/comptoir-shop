@@ -17,7 +17,7 @@ defineProps<{ product: { type: object; default: null } }>();
   </NuxtLink> -->
   <NuxtLink
     :to="`/product/${product.slug}`"
-    class="w-[30rem] h-[40rem] relative border border-solid border-white/40 rounded-2xl overflow-hidden hover:scale-[101%] transition-transform duration-800"
+    class="w-[30rem] h-[40rem] relative border border-solid border-white/40 rounded-2xl overflow-hidden hover:scale-[101%] transition duration-100 shadow-[0_2px_5px_2px_rgba(0,0,0,0.25)]"
   >
     <div class="w-full h-full p-1 absolute bg-[#dddddd]">
       <div

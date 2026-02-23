@@ -31,7 +31,8 @@ console.log(product);
             v-for="(image, index) in product?.images"
             :key="index"
             :src="image"
-            class="w-24 h-24 bg-white border border-gray-300 object-cover hover:border-black hover:scale-105 cursor-pointer p-2"
+            :class="{ active: activeImage === image }"
+            class="w-24 h-24 bg-white border border-2 rounded-md border-gray-300 object-cover hover:border-black hover:scale-105 cursor-pointer p-2"
             @click="activeImage = image"
           />
         </div>
@@ -56,3 +57,10 @@ console.log(product);
     </div>
   </div>
 </template>
+
+<style scoped>
+.active {
+  border: 2px solid black;
+  transform: scale(1.05);
+}
+</style>

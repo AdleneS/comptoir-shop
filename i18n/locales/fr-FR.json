@@ -56,8 +56,8 @@
         "description": "Collection le comptoir de la presse"
       },
       "link": "Collection",
-      "title1": "Nos",
-      "title2": "Collections"
+      "title1": "Les",
+      "title2": "Articles"
     },
     "press": {
       "meta": {
@@ -75,7 +75,12 @@
       "passwordPlaceholder": "MOT DE PASSE",
       "signUpButton": "Se connecter",
       "signInButton": "Créer un compte",
-      "link": "Se Connecter"
+      "link": "Se Connecter",
+      "forgetPassword": "Mot de passe oublié ?",
+      "resetPasswordDescription": "Entrez votre adresse e-mail ci-dessous et nous vous enverrons un lien pour réinitialiser votre mot de passe.",
+      "backToLogin": "Retour à la connexion",
+      "resetPasswordButton": "Réinitialiser le mot de passe",
+      "resetPasswordSuccess": "Un e-mail de réinitialisation du mot de passe a été envoyé à votre adresse e-mail."
     },
     "product": {
       "meta": {
@@ -91,6 +96,23 @@
       },
       "link": "Mon Compte",
       "logoutButton": "Se déconnecter"
+    },
+    "updatePassword": {
+      "meta": {
+        "title": "Mettre à jour le mot de passe",
+        "description": "Page de mise à jour du mot de passe"
+      },
+      "link": "Mettre à jour le mot de passe",
+      "newPasswordPlaceholder": "Nouveau mot de passe",
+      "confirmPasswordPlaceholder": "Confirmer le mot de passe",
+      "updateButton": "Mettre à jour le mot de passe"
+    },
+    "forgetPassword": {
+      "meta": {
+        "title": "Mot de passe oublié",
+        "description": "Page de mot de passe oublié"
+      },
+      "link": "Mot de passe oublié"
     }
   }
 }
