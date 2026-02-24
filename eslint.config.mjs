@@ -6,6 +6,7 @@ export default withNuxt(
   {
     files: ["**/*.{js,ts,vue}"],
     rules: {
+      "vue/no-multiple-template-root": false,
       // custom rules here
     },
   },

@@ -10,7 +10,7 @@ const logoUrl = supabase.storage
 </script>
 <template>
   <nav
-    class="text-white mt-4 p-3 py-5 backdrop-blur-lg rounded-2xl flex justify-between bg-[#000b] fixed w-1/2 top-0 z-10"
+    class="left-[50%] translate-x-[-50%] text-white mt-4 p-3 py-5 backdrop-blur-lg rounded-2xl flex justify-between bg-[#000b] fixed w-1/2 top-0 z-10"
     :class="t('locale.dir') === 'rtl' ? 'flex-row-reverse' : 'flex-row'"
   >
     <ul class="flex justify-center items-center align-middle gap-2">

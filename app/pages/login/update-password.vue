@@ -51,14 +51,14 @@ const handleUpdatePassword = async () => {
       <input
         v-model="newPassword"
         type="password"
-        :placeholder="t('pages.updatePassword.newPasswordPlaceholder')"
+        :placeholder="t('pages.login.updatePassword.newPasswordPlaceholder')"
         class="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600"
         required
       />
       <input
         v-model="newPasswordCheck"
         type="password"
-        :placeholder="t('pages.updatePassword.confirmPasswordPlaceholder')"
+        :placeholder="t('placeholders.confirmPasswordPlaceholder')"
         class="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600"
         required
       />

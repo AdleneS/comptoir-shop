@@ -34,6 +34,13 @@
   "nav": {
     "account": "Mon Compte"
   },
+  "placeholders": {
+    "emailPlaceholder": "E-mail",
+    "passwordPlaceholder": "Mot de passe",
+    "firstnamePlaceholder": "Prenom",
+    "lastnamePlaceholder": "Nom",
+    "confirmPasswordPlaceholder": "Confirmer le mot de passe"
+  },
   "pages": {
     "index": {
       "meta": {
@@ -71,17 +78,43 @@
         "title": "Se connecter",
         "description": "Page de connexion au shop Comptoir de la Presse"
       },
-      "emailPlaceholder": "E-MAIL",
-      "passwordPlaceholder": "MOT DE PASSE",
-      "signUpButton": "Se connecter",
-      "signInButton": "Créer un compte",
       "link": "Se Connecter",
-      "forgetPassword": "Mot de passe oublié ?",
-      "resetPasswordDescription": "Entrez votre adresse e-mail ci-dessous et nous vous enverrons un lien pour réinitialiser votre mot de passe.",
-      "backToLogin": "Retour à la connexion",
-      "resetPasswordButton": "Réinitialiser le mot de passe",
-      "resetPasswordSuccess": "Un e-mail de réinitialisation du mot de passe a été envoyé à votre adresse e-mail.",
-      "credentialsError": "E-mail ou mot de passe incorrect."
+      "passwordMismatch": "Les mots de passe ne correspondent pas.",
+      "index": {
+        "signUpButton": "Se connecter",
+        "signInButton": "Créer un compte",
+        "forgetPassword": "Mot de passe oublié ?",
+        "credentialsError": "E-mail ou mot de passe incorrect."
+      },
+      "updatePassword": {
+        "meta": {
+          "title": "Mettre à jour le mot de passe",
+          "description": "Page de mise à jour du mot de passe"
+        },
+        "link": "Mettre à jour le mot de passe",
+        "newPasswordPlaceholder": "Nouveau mot de passe",
+        "updateButton": "Mettre à jour le mot de passe",
+        "backToHome": "Retour à l'accueil"
+      },
+      "forgetPassword": {
+        "meta": {
+          "title": "Mot de passe oublié",
+          "description": "Page de mot de passe oublié"
+        },
+        "link": "Mot de passe oublié",
+        "resetPasswordDescription": "Entrez votre adresse e-mail ci-dessous et nous vous enverrons un lien pour réinitialiser votre mot de passe.",
+        "resetPasswordButton": "Réinitialiser le mot de passe",
+        "resetPasswordSuccess": "Un e-mail de réinitialisation du mot de passe a été envoyé à votre adresse e-mail.",
+        "backToLogin": "Retour à la connexion"
+      },
+      "createAccount": {
+        "meta": {
+          "title": "Créer un compte",
+          "description": "Page de création de compte au shop Comptoir de la Presse"
+        },
+        "createAccountButton": "Créer mon compte",
+        "next": "Next"
+      }
     },
     "product": {
       "meta": {
@@ -112,25 +145,6 @@
         "total": "Total",
         "noOrders": "Vous n'avez pas encore de commandes."
       }
-    },
-    "updatePassword": {
-      "meta": {
-        "title": "Mettre à jour le mot de passe",
-        "description": "Page de mise à jour du mot de passe"
-      },
-      "link": "Mettre à jour le mot de passe",
-      "newPasswordPlaceholder": "Nouveau mot de passe",
-      "confirmPasswordPlaceholder": "Confirmer le mot de passe",
-      "updateButton": "Mettre à jour le mot de passe",
-      "passwordMismatch": "Les mots de passe ne correspondent pas.",
-      "backToHome": "Retour à l'accueil"
-    },
-    "forgetPassword": {
-      "meta": {
-        "title": "Mot de passe oublié",
-        "description": "Page de mot de passe oublié"
-      },
-      "link": "Mot de passe oublié"
     }
   }
 }
