@@ -5,8 +5,8 @@ const supabase = useSupabaseClient();
 const email = ref("");
 const password = ref("");
 const confirmPassword = ref("");
-const firstname = ref("");
-const lastname = ref("");
+// const firstname = ref("");
+// const lastname = ref("");
 const inputError = ref<string | null>(null);
 
 useHead({
