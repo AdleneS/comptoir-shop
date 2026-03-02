@@ -7,7 +7,9 @@ const { data: featured } = await useAsyncData(
 );
 </script>
 <template>
-  <div class="p-8 w-screen bg-white items-center flex flex-col gap-8">
+  <div
+    class="flex flex-col p-8 gap-8 items-center justify-center container 2xl:max-w-[50%]"
+  >
     <h1 class="text-black flex gap-2">
       <span class="text-6xl font-greatVibes">
         {{ t("pages.index.productSection.title1") }}
@@ -17,7 +19,7 @@ const { data: featured } = await useAsyncData(
       </span>
     </h1>
 
-    <div class="flex flex-wrap justify-center gap-8">
+    <div class="flex flex-wrap h-full w-full justify-center gap-8 m-auto">
       <ProductCard
         v-for="product in featured"
         :key="product.id"

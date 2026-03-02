@@ -15,9 +15,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="flex justify-center items-center overflow-y-hidden h-screen">
+  <div class="flex justify-center items-center h-screen w-full relative">
     <div v-if="!loaded" class="w-full h-full bg-black absolute" />
-
     <video
       v-if="videoUrl"
       autoplay

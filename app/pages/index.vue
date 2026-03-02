@@ -15,8 +15,6 @@ definePageMeta({
 </script>
 
 <template>
-  <div>
-    <HeroSection />
-    <ProductSection />
-  </div>
+  <HeroSection />
+  <ProductSection />
 </template>

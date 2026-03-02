@@ -22,9 +22,9 @@ const { data: product } = await useAsyncData(
 activeImage.value = product.value?.images[0] || "";
 </script>
 <template>
-  <div class="p-8 pt-48 w-screen h-screen bg-white flex gap-8 justify-center">
+  <div class="bg-white flex gap-8 justify-center w-full h-full">
     <div class="w-1/2 flex flex-col items-center justify-center">
-      <div class="w-2/3 h-full flex flex-col bg-white p-4">
+      <div class="w-2/3 flex flex-col bg-white p-4">
         <div class="flex flex-wrap gap-2 w-full pt-4 mb-4">
           <img
             v-for="(image, index) in product?.images"
@@ -38,7 +38,7 @@ activeImage.value = product.value?.images[0] || "";
         <img
           :src="activeImage"
           :alt="product.name"
-          class="w-full object-contain min-h-96 mb-4 border-t border-gray-300 pt-4"
+          class="w-full object-contain border-t border-gray-300"
         />
       </div>
     </div>

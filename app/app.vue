@@ -1,6 +1,8 @@
 <script setup lang="ts">
 // import { createClient } from "@supabase/supabase-js";
 const config = useRuntimeConfig();
+const nuxtApp = useNuxtApp();
+
 // const supabase = createClient(
 //   config.public.supabaseUrl,
 //   config.public.supabasePublishableKey,
@@ -15,6 +17,10 @@ if (import.meta.client) {
     locale.value = storedLanguage;
   }
 }
+
+nuxtApp.hook("page:finish", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
 
 onMounted(() => {
   // Remove loading state after initial render

@@ -27,5 +27,5 @@ html.dark {
 }
 
 body {
-  @apply overflow-hidden;
+  @apply overflow-auto;
 }

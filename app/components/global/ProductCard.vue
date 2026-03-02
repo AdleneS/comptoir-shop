@@ -17,7 +17,7 @@ defineProps<{ product: { type: object; default: null } }>();
   </NuxtLink> -->
   <NuxtLink
     :to="`/product/${product.slug}`"
-    class="w-[30rem] h-[40rem] relative border border-solid border-white/40 rounded-2xl overflow-hidden hover:scale-[101%] transition duration-100 shadow-[0_2px_5px_2px_rgba(0,0,0,0.25)]"
+    class="flex-1 relative w-full aspect-[4/5] border border-solid border-white/40 rounded-2xl overflow-hidden hover:scale-[101%] transition duration-100 shadow-[0_2px_5px_2px_rgba(0,0,0,0.25)]"
   >
     <div class="w-full h-full p-1 absolute bg-[#dddddd]">
       <div
@@ -29,7 +29,7 @@ defineProps<{ product: { type: object; default: null } }>();
       class="w-full h-full flex items-center justify-center relative backdrop-blur-lg rounded-2xl border border-solid border-white/20"
     >
       <div
-        class="w-[25rem] h-[25rem] rounded-full bg-gradient-to-tr from-white to-[#c1c1c1] animate-spin"
+        class="rounded-full bg-gradient-to-tr from-white to-[#c1c1c1] animate-spin"
         style="animation-duration: 4s"
       />
     </div>
