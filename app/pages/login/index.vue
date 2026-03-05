@@ -25,7 +25,7 @@ const halfImage = supabase.storage
     <h1 class="text-3xl font-bold text-gray-900 mb-2 uppercase">
       {{ t("pages.login.meta.title") }}
     </h1>
-    <div class="w-full max-w-md">
+    <div class="w-3/4 p-4">
       <LoginForm />
       <button
         class="w-full mt-4 bg-amber-300 text-black py-2 px-4 font-medium hover:bg-amber-500 transition"

@@ -27,9 +27,6 @@ const logoUrl = supabase.storage
       <li>
         <NavBarButton link="/collection" label="collection" />
       </li>
-      <li>
-        <NavBarButton link="https://press.comptoir.com" label="press" />
-      </li>
     </ul>
     <div
       class="flex justify-center items-center font-black text-4xl absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
@@ -37,13 +34,19 @@ const logoUrl = supabase.storage
       CDLP
     </div>
     <ul class="flex justify-end items-center align-middle gap-2">
-      <ThemeSwitcher class="rounded-lg hover:bg-gray-100 p-2 text-white" />
-      <LanguageSelector />
+      <!-- <ThemeSwitcher class="rounded-lg hover:bg-gray-100 p-2 text-white" /> -->
+
+      <li>
+        <NavBarButton link="https://press.comptoir.com" label="press" />
+      </li>
       <li v-if="!isLoggedIn">
         <NavBarButton link="/login" label="login" />
       </li>
       <li v-if="isLoggedIn">
         <NavBarButton link="/account" label="account" />
+      </li>
+      <li>
+        <LanguageSelector />
       </li>
     </ul>
   </nav>

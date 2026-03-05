@@ -29,7 +29,7 @@ defineProps<{ product: { type: object; default: null } }>();
       class="w-full h-full flex items-center justify-center relative backdrop-blur-lg rounded-2xl border border-solid border-white/20"
     >
       <div
-        class="rounded-full bg-gradient-to-tr from-white to-[#c1c1c1] animate-spin"
+        class="aspect-square w-3/4 rounded-full bg-gradient-to-tr from-white to-[#c1c1c1] animate-spin"
         style="animation-duration: 4s"
       />
     </div>

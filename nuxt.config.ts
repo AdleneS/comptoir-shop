@@ -80,13 +80,12 @@ export default defineNuxtConfig({
 
   i18n: {
     baseUrl: process.env.NUXT_PUBLIC_BASE_URL || "http://localhost:3000",
-    defaultLocale: "en-US",
+    defaultLocale: "fr-FR",
     langDir: "./locales",
     strategy: "no_prefix",
     locales: [
-      { code: "en-US", iso: "en-US", file: "en-US.json" },
       { code: "fr-FR", iso: "fr-FR", file: "fr-FR.json" },
-      { code: "ar-AR", iso: "ar-AR", file: "ar-AR.json" },
+      { code: "en-US", iso: "en-US", file: "en-US.json" },
     ],
     detectBrowserLanguage: {
       useCookie: true,
@@ -113,12 +112,10 @@ export default defineNuxtConfig({
           name: {
             fr: "Nécessaire",
             en: "Necessary",
-            ar: "ضروري",
           },
           description: {
             fr: "Nécessaire",
             en: "Necessary",
-            ar: "ضروري",
           },
           isPreselected: true,
           id: "necessary",
@@ -126,7 +123,7 @@ export default defineNuxtConfig({
       ],
       optional: [],
     },
-    locales: ["en", "fr", "ar"],
+    locales: ["fr", "en"],
   },
   supabase: {
     redirect: false,

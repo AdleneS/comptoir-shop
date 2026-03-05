@@ -1,9 +1,8 @@
 {
   "locale": {
     "dir": "ltr",
-    "en-US": "English",
-    "fr-FR": "Français",
-    "ar-AR": "العربية"
+    "en-US": "Us",
+    "fr-FR": "Fr"
   },
   "site": {
     "name": "Le Comptoir de la Presse"

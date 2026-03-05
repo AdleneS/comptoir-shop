@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { t } = useI18n();
 const supabase = useSupabaseClient();
-
+const config = useRuntimeConfig();
 const email = ref("");
 const password = ref("");
 const confirmPassword = ref("");
@@ -23,8 +23,11 @@ useSeoMeta({
   description: t("pages.login.createAccount.meta.description"),
 });
 definePageMeta({
-  layout: "default",
+  layout: "half",
 });
+const halfImage = supabase.storage
+  .from(config.public.supabaseAssetsBucketName)
+  .getPublicUrl("half.jpg").data.publicUrl;
 
 const handleCreateAccount = async () => {
   if (password.value !== confirmPassword.value) {
@@ -46,15 +49,16 @@ const handleCreateAccount = async () => {
 </script>
 
 <template>
-  <h1 class="text-3xl font-bold text-gray-900 mb-2 uppercase">
-    {{ t("pages.login.createAccount.meta.title") }}
-  </h1>
-  <div class="flex flex-cols w-full md:w-1/2 p-4">
-    <form
-      class="space-y-4 flex flex-col w-full"
-      @submit.prevent="handleCreateAccount"
-    >
-      <!-- <div class="flex gap-4 flex-wrap">
+  <div class="w-1/2 p-8 h-screen flex flex-col items-center justify-center">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2 uppercase">
+      {{ t("pages.login.createAccount.meta.title") }}
+    </h1>
+    <div class="flex flex-cols p-4 w-3/4">
+      <form
+        class="space-y-4 flex flex-col w-full"
+        @submit.prevent="handleCreateAccount"
+      >
+        <!-- <div class="flex gap-4 flex-wrap">
         <input
           v-model="firstname"
           type="text"
@@ -70,38 +74,40 @@ const handleCreateAccount = async () => {
           required
         />
       </div> -->
-      <input
-        v-model="email"
-        type="email"
-        :placeholder="t('placeholders.emailPlaceholder')"
-        class="flex-1 px-4 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-amber-300"
-        required
-      />
-      <div class="flex gap-4 flex-wrap">
         <input
-          v-model="password"
-          type="password"
-          :placeholder="t('placeholders.passwordPlaceholder')"
+          v-model="email"
+          type="email"
+          :placeholder="t('placeholders.emailPlaceholder')"
           class="flex-1 px-4 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-amber-300"
           required
         />
-        <input
-          v-model="confirmPassword"
-          type="password"
-          :placeholder="t('placeholders.confirmPasswordPlaceholder')"
-          class="flex-1 px-4 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-amber-300"
-          required
-        />
-      </div>
-      <div v-if="inputError" class="text-red-500">
-        {{ inputError }}
-      </div>
-      <button
-        type="submit"
-        class="w-full bg-amber-300 text-black py-2 px-4 font-medium hover:bg-amber-500 transition"
-      >
-        {{ t("pages.login.createAccount.createAccountButton") }}
-      </button>
-    </form>
+        <div class="flex gap-4 flex-wrap">
+          <input
+            v-model="password"
+            type="password"
+            :placeholder="t('placeholders.passwordPlaceholder')"
+            class="flex-1 px-4 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-amber-300"
+            required
+          />
+          <input
+            v-model="confirmPassword"
+            type="password"
+            :placeholder="t('placeholders.confirmPasswordPlaceholder')"
+            class="flex-1 px-4 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-amber-300"
+            required
+          />
+        </div>
+        <div v-if="inputError" class="text-red-500">
+          {{ inputError }}
+        </div>
+        <button
+          type="submit"
+          class="w-full bg-amber-300 text-black py-2 px-4 font-medium hover:bg-amber-500 transition"
+        >
+          {{ t("pages.login.createAccount.createAccountButton") }}
+        </button>
+      </form>
+    </div>
   </div>
+  <img :src="halfImage" class="w-1/2 h-screen object-cover bg-gray-100" />
 </template>

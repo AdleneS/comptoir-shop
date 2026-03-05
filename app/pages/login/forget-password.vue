@@ -45,7 +45,7 @@ const handleResetPassword = async () => {
 
 <template>
   <div class="w-1/2 p-8 h-full flex flex-col items-center justify-center">
-    <div class="w-full max-w-md">
+    <div class="w-3/4 p-8">
       <p class="text-gray-600 mb-4">
         {{ t("pages.login.forgetPassword.resetPasswordDescription") }}
       </p>

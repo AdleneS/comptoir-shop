@@ -13,7 +13,7 @@ const isLoading = ref(true);
 
 if (import.meta.client) {
   const storedLanguage = localStorage.getItem("nuxt-lang");
-  if (storedLanguage && storedLanguage !== "en-US") {
+  if (storedLanguage && storedLanguage !== "fr-FR") {
     locale.value = storedLanguage;
   }
 }
