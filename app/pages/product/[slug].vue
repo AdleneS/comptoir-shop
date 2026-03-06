@@ -3,6 +3,8 @@ const { t } = useI18n();
 const route = useRoute();
 const { getProductBySlug } = useProducts();
 const activeImage = ref("");
+const { addToCart } = useCart();
+
 useHead({
   title: t("pages.product.meta.title"),
   meta: [{ name: "description", content: t("pages.product.meta.description") }],
@@ -19,6 +21,7 @@ const { data: product } = await useAsyncData(
   `product-${route.params.slug}`,
   () => getProductBySlug(route.params.slug as string),
 );
+console.log(product);
 activeImage.value = product.value?.images[0] || "";
 </script>
 <template>
@@ -49,6 +52,7 @@ activeImage.value = product.value?.images[0] || "";
         <p class="text-2xl font-semibold">{{ product.skus[0].price }} €</p>
         <button
           class="bg-amber-300 hover:bg-amber-500 text-black font-bold py-2 px-4 rounded"
+          @click="addToCart(product, product.skus[0], 1)"
         >
           Ajouter au panier
         </button>

@@ -4,12 +4,20 @@ const supabase = useSupabaseClient();
 const auth = useAuth();
 const user = auth.user;
 const currentTab = ref(1);
+const data = ref(null);
 
-const { data } = await supabase
-  .from("profiles")
-  .select("*")
-  .eq("id", user?.value?.id)
-  .single();
+try {
+  const { data: userData } = await supabase
+    .from("profiles")
+    .select("*")
+    .eq("id", user?.value?.id)
+    .single();
+
+  data.value = userData;
+} catch (error) {
+  navigateTo("/");
+  console.error("Error fetching profile:", error);
+}
 
 useHead({
   title: t("pages.account.meta.title"),
@@ -21,7 +29,7 @@ useSeoMeta({
 });
 definePageMeta({
   layout: "default",
-  middleware: ["auth"],
+  middleware: "auth",
 });
 </script>
 

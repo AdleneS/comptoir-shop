@@ -12,6 +12,7 @@ export const useProducts = () => {
         name
       ),
       skus:products_skus (
+        id,
         price
     )
     `,

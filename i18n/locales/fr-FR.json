@@ -144,6 +144,12 @@
         "total": "Total",
         "noOrders": "Vous n'avez pas encore de commandes."
       }
+    },
+    "cart": {
+      "meta": {
+        "title": "Mon panier",
+        "description": "Page mon panier comptoir de la presse"
+      }
     }
   }
 }

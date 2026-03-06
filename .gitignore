@@ -65,10 +65,10 @@ logs
 
 # Misc
 .DS_Store
+.continue
 
 # Local env files
 node_modules
-
 # Local certs
 certs/localhost-key.pem
 certs/localhost.pem
