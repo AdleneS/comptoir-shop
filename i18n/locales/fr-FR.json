@@ -149,7 +149,13 @@
       "meta": {
         "title": "Mon panier",
         "description": "Page mon panier comptoir de la presse"
-      }
+      },
+      "title1": "Mon",
+      "title2": "Panier",
+      "emptyCart": "Votre panier est vide",
+      "totalPrice": "Total :",
+      "articles": "Articles :",
+      "checkoutButton": "Passer au paiement"
     }
   }
 }

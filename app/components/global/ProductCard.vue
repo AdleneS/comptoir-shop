@@ -38,9 +38,10 @@ defineProps<{ product: { type: object; default: null } }>();
       <div
         class="p-2 pt-3 pb-1.5 flex flex-col rounded-xl backdrop-blur-lg bg-gray-50/10 text-black font-light"
       >
-        <div class="w-full mt-auto flex items-center justify-center">
-          <span class="text-4xl text-black">{{ product.name }}</span>
-        </div>
+        <span
+          class="w-full mt-auto flex items-center justify-center text-4xl text-black"
+          >{{ product.name }}</span
+        >
         <img
           v-if="product.id"
           :src="product.image"

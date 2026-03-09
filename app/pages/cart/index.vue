@@ -11,6 +11,8 @@ const {
 } = useCart();
 const loading = ref(true);
 
+const { getImageUrl } = useProductImage();
+
 useHead({
   title: t("pages.cart.meta.title"),
   meta: [
@@ -25,14 +27,13 @@ useSeoMeta({
   description: t("pages.cart.meta.description"),
 });
 definePageMeta({
-  layout: "half",
+  layout: "default",
 });
 
 // Charger le panier au montage
 onMounted(async () => {
   try {
     await loadCart();
-    console.log(cart);
   } finally {
     loading.value = false;
   }
@@ -45,84 +46,100 @@ const checkout = () => {
 </script>
 
 <template>
-  <div class="cart-page">
-    <h1>Mon Panier</h1>
+  <div class="w-full h-full flex flex-col items-center">
+    <h1 class="text-black flex gap-2">
+      <span class="text-6xl font-greatVibes">
+        {{ t("pages.cart.title1") }}
+      </span>
+      <span class="text-6xl font-bold font-dmSans mt-8">
+        {{ t("pages.cart.title2") }}
+      </span>
+    </h1>
 
-    <div v-if="loading" class="loading">Chargement...</div>
+    <div v-if="loading">Chargement...</div>
 
-    <div v-else-if="cart.length === 0" class="empty-cart">
-      Votre panier est vide
+    <div
+      class="w-full h-[30rem] flex flex-col gap-8 m-auto justify-center items-center text-4xl text-bold"
+      v-else-if="cart.length === 0"
+    >
+      <span>Votre panier est vide</span>
+      <NuxtLink
+        to="/collection"
+        class="text-black hover:underline text-lg font-medium italic flex items-center hover:scale-110 transition-transform duration-200"
+      >
+        {{ t("pages.index.productSection.viewAll") }}
+        <Icon name="material-symbols:arrow-right-alt" class="ml-2" />
+      </NuxtLink>
     </div>
 
-    <div v-else class="cart-items">
-      <div v-for="item in cart" :key="item.sku_id" class="cart-item">
-        <div class="item-info">
-          <h3>{{ item.name }}</h3>
-          <p>{{ item.slug }}</p>
-          <p>Prix: {{ item.price }}€</p>
-        </div>
-
-        <div class="item-controls">
-          <button @click="updateQuantity(item.sku_id, item.quantity - 1)">
-            -
-          </button>
-          <span>{{ item.quantity }}</span>
-          <button @click="updateQuantity(item.sku_id, item.quantity + 1)">
-            +
-          </button>
-          <button @click="removeFromCart(item.sku_id)">Retirer</button>
-        </div>
-
-        <div class="item-total">
-          {{ (item.price * item.quantity).toFixed(2) }}€
+    <div v-else class="flex w-full h-full mt-8 gap-8">
+      <div class="flex flex-col gap-8 w-1/2">
+        <div
+          class="flex flex-col gap-8 border-t border-gray-300"
+          v-for="item in cart"
+          :key="item.sku_id"
+        >
+          <div class="flex gap-8 p-4 items-center w-full">
+            <img
+              :src="getImageUrl(item.slug)"
+              alt="Product Image"
+              class="w-1/3 object-contain"
+            />
+            <div>
+              <span
+                class="w-full flex items-center justify-center text-4xl text-black"
+                >{{ item.name }}</span
+              >
+              <span class="text-3xl">{{ item.price }}€</span>
+              <div class="flex h-[5rem] items-center">
+                <button
+                  class="bg-zinc-200 text-black rounded h-[3rem] w-[3rem] text-center font-bold text-3xl"
+                  @click="updateQuantity(item.sku_id, item.quantity - 1)"
+                >
+                  -
+                </button>
+                <span class="m-4 text-3xl font-extrabold">{{
+                  item.quantity
+                }}</span>
+                <button
+                  class="bg-amber-400 text-black h-[3rem] w-[3rem] text-center rounded mr-2 font-bold text-3xl"
+                  @click="updateQuantity(item.sku_id, item.quantity + 1)"
+                >
+                  +
+                </button>
+                <button @click="removeFromCart(item.sku_id)">
+                  <Icon
+                    name="mdi:cross-circle-outline"
+                    class="text-red-500 h-[2rem] w-[2rem]"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="cart-summary">
-        <h2>Total: {{ totalPrice.toFixed(2) }}€</h2>
-        <p>Articles: {{ totalItems }}</p>
-        <button @click="checkout">Procéder au paiement</button>
+      <div class="w-1/2 flex flex-col gap-8 border-l border-gray-300 p-4">
+        <div class="flex items-center justify-between">
+          <h2 class="text-3xl text-bold">
+            {{ t("pages.cart.articles") }}
+            <span class="text-4xl font-black"> {{ totalItems }}</span>
+          </h2>
+          <h2 class="text-4xl text-bold">
+            {{ t("pages.cart.totalPrice") }}
+            <span class="text-4xl font-black">
+              {{ totalPrice.toFixed(2) }}€</span
+            >
+          </h2>
+        </div>
+
+        <button
+          class="bg-amber-300 hover:bg-amber-500 text-black font-bold py-2 px-4 rounded w-full"
+          @click="checkout"
+        >
+          {{ t("pages.cart.checkoutButton") }}
+        </button>
       </div>
     </div>
   </div>
 </template>
-
-<style scoped>
-.cart-page {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.cart-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px;
-  border-bottom: 1px solid #eee;
-  margin-bottom: 10px;
-}
-
-.item-controls {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.item-controls button {
-  padding: 5px 10px;
-}
-
-.cart-summary {
-  margin-top: 30px;
-  padding: 20px;
-  border-top: 2px solid #eee;
-  text-align: right;
-}
-
-.loading,
-.empty-cart {
-  text-align: center;
-  padding: 40px;
-}
-</style>

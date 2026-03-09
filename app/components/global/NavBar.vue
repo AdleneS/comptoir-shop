@@ -3,7 +3,7 @@ const { t } = useI18n();
 const { isLoggedIn } = useAuth();
 const supabase = useSupabaseClient();
 const config = useRuntimeConfig();
-
+const { totalItems } = useCart();
 const logoUrl = supabase.storage
   .from(config.public.supabaseAssetsBucketName)
   .getPublicUrl("logo.svg").data.publicUrl;
@@ -47,6 +47,14 @@ const logoUrl = supabase.storage
       </li>
       <li>
         <LanguageSelector />
+      </li>
+      <li class="flex">
+        <NuxtLink class="flex" to="/cart">
+          <Icon name="material-symbols:shopping-cart" size="32" />
+        </NuxtLink>
+        <span v-if="totalItems > 0" class="text-sm font-bold">{{
+          totalItems
+        }}</span>
       </li>
     </ul>
   </nav>

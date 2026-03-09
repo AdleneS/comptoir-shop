@@ -6,33 +6,64 @@ export const useCart = () => {
   const loadCart = async () => {
     try {
       if (user.value) {
-        const { data, error } = await supabase.from("carts_items").select(`
+        // Récupérer l'ID du panier de l'utilisateur
+        const { data: cartData, error: cartError } = await supabase
+          .from("carts")
+          .select("id")
+          .eq("user_id", user.value.sub)
+          .maybeSingle();
+
+        if (cartError) {
+          console.error("Erreur lors de la récupération du panier:", cartError);
+          console.log(user.value);
+
+          throw new Error(
+            `Erreur de récupération du panier: ${cartError.message}`,
+          );
+        }
+
+        if (!cartData) {
+          cart.value = [];
+          return;
+        }
+
+        // Récupérer les items avec jointure correcte
+        const { data: cartItems, error: itemsError } = await supabase
+          .from("carts_items")
+          .select(
+            `
             quantity,
-            product_id,
             product_sku_id,
-            products (
-              id,
-              name,
-              slug
-            ),
+            product_id,
             products_skus (
               id,
               price
+            ),
+             products (
+              name,
+              slug
             )
-          `);
+          `,
+          )
+          .eq("cart_id", cartData.id);
 
-        if (error) {
-          console.error("Erreur lors du chargement du panier:", error);
-          throw new Error(`Erreur de chargement du panier: ${error.message}`);
+        if (itemsError) {
+          console.error(
+            "Erreur lors de la récupération des items:",
+            itemsError,
+          );
+          throw new Error(
+            `Erreur de récupération des items: ${itemsError.message}`,
+          );
         }
 
         cart.value =
-          data?.map((item) => ({
-            product_id: item.product_id,
+          cartItems?.map((item) => ({
+            product_id: item.products_skus?.product_id,
             sku_id: item.product_sku_id,
-            name: item.products.name,
-            slug: item.products.slug,
-            price: item.products_skus.price,
+            name: item.products.name, // Vous devrez récupérer le nom via une autre méthode
+            slug: item.products.slug, // Vous devrez récupérer le slug via une autre méthode
+            price: item.products_skus?.price || 0,
             quantity: item.quantity,
           })) ?? [];
       } else {
@@ -56,37 +87,57 @@ export const useCart = () => {
       }
     } catch (error) {
       console.error("Erreur lors de la sauvegarde locale du panier:", error);
-      // Peut-être notifier l'utilisateur ou logger l'erreur
+    }
+  };
+
+  const updateExistingItem = async (
+    existing: any,
+    sku: any,
+    quantity: number,
+  ) => {
+    existing.quantity += quantity;
+    if (user.value) {
+      await updateQuantity(sku.id, existing.quantity);
+    } else {
+      saveLocalCart();
+    }
+  };
+
+  const addNewItem = async (product: any, sku: any, quantity: number) => {
+    cart.value.push({
+      product_id: product.id,
+      sku_id: sku.id,
+      name: product.name,
+      slug: product.slug,
+      price: sku.price,
+      quantity,
+    });
+
+    if (user.value) {
+      await supabase.from("carts_items").upsert(
+        {
+          product_id: product.id,
+          product_sku_id: sku.id,
+          quantity,
+          cart_id: await getCartId(),
+        },
+        {
+          onConflict: "cart_id,product_sku_id",
+        },
+      );
+    } else {
+      saveLocalCart();
     }
   };
 
   const addToCart = async (product: any, sku: any, quantity = 1) => {
     try {
       const existing = cart.value.find((i) => i.sku_id === sku.id);
-
       if (existing) {
-        existing.quantity += quantity;
-      } else {
-        cart.value.push({
-          product_id: product.id,
-          sku_id: sku.id,
-          name: product.name,
-          slug: product.slug,
-          price: sku.price,
-          quantity,
-        });
+        return updateExistingItem(existing, sku, quantity);
       }
 
-      if (user.value) {
-        await supabase.from("carts_items").upsert({
-          product_id: product.id,
-          product_sku_id: sku.id,
-          quantity,
-          cart_id: await getCartId(),
-        });
-      } else {
-        saveLocalCart();
-      }
+      return addNewItem(product, sku, quantity);
     } catch (error) {
       console.error("Erreur lors de l'ajout au panier:", error);
       throw error;
@@ -114,9 +165,12 @@ export const useCart = () => {
   const updateQuantity = async (sku_id: string, quantity: number) => {
     try {
       const item = cart.value.find((i) => i.sku_id === sku_id);
-
       if (!item) return;
 
+      if (quantity <= 0) {
+        removeFromCart(sku_id);
+        return;
+      }
       item.quantity = quantity;
 
       if (user.value) {
@@ -157,7 +211,6 @@ export const useCart = () => {
       console.log(cartData);
 
       if (!cartData) {
-        console.log("NO CART");
         const { data, error } = await supabase
           .from("carts")
           .insert({ user_id: loggedInUser.id })
@@ -219,9 +272,9 @@ async function getCartId() {
     const user = useSupabaseUser();
 
     const { data, error } = await supabase
-      .from("cart")
+      .from("carts")
       .select("id")
-      .eq("user_id", user.value.id)
+      .eq("user_id", user?.value?.sub)
       .single();
 
     if (error) {

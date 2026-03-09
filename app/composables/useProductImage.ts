@@ -10,17 +10,17 @@ export const useProductImage = () => {
     return data.publicUrl;
   };
 
-  const getProductImages = async (slug: string) => {
+  const getProductImages = async (slug: string, limit = 10) => {
     const { data, error } = await supabase.storage
       .from(config.public.supabaseProductsBucketName)
-      .list(slug, { limit: 10 });
+      .list(slug, { limit });
     if (error) throw error;
 
     return data.map((file) => {
       const { data: url } = supabase.storage
         .from(config.public.supabaseProductsBucketName)
         .getPublicUrl(`${slug}/${file.name}`);
-      return url.publicUrl ?? [];
+      return url.publicUrl ?? "";
     });
   };
 
