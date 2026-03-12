@@ -5,7 +5,7 @@ const { t } = useI18n();
   <div>
     <NavBar />
     <main
-      class="pt-48 w-full px-4 pb-4 flex flex-col items-center min-h-screen"
+      class="pt-32 w-full px-4 pb-4 flex flex-col items-center min-h-screen"
     >
       <slot />
     </main>

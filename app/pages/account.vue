@@ -35,7 +35,7 @@ definePageMeta({
 
 <template>
   <div
-    class="pt-48 h-screen w-full px-4 md:w-1/2 md:px-0 flex flex-col gap-4 items-center"
+    class="w-full px-4 md:w-1/2 md:px-0 flex flex-col gap-4 items-center mt-4"
   >
     <div class="flex whitespace-nowrap justify-center gap-4 mb-4 w-full">
       <h3

@@ -47,7 +47,7 @@ const checkout = () => {
 
 <template>
   <div class="w-full h-full flex flex-col items-center">
-    <h1 class="text-black flex gap-2">
+    <h1 v-if="cart.length !== 0 && !loading" class="text-black flex gap-2">
       <span class="text-6xl font-greatVibes">
         {{ t("pages.cart.title1") }}
       </span>
@@ -56,7 +56,9 @@ const checkout = () => {
       </span>
     </h1>
 
-    <div v-if="loading">Chargement...</div>
+    <div class="mt-32" v-if="loading">
+      <Icon class="h-20 w-20" name="svg-spinners:bars-scale-fade"></Icon>
+    </div>
 
     <div
       class="w-full h-[30rem] flex flex-col gap-8 m-auto justify-center items-center text-4xl text-bold"
@@ -72,12 +74,13 @@ const checkout = () => {
       </NuxtLink>
     </div>
 
-    <div v-else class="flex w-full h-full mt-8 gap-8">
+    <div v-else class="flex w-full h-full mt-12 gap-8">
       <div class="flex flex-col gap-8 w-1/2">
         <div
-          class="flex flex-col gap-8 border-t border-gray-300"
-          v-for="item in cart"
+          v-for="(item, i) in cart"
           :key="item.sku_id"
+          class="flex flex-col gap-8"
+          :class="{ 'border-t border-gray-300': i > 0 }"
         >
           <div class="flex gap-8 p-4 items-center w-full">
             <img
@@ -107,7 +110,10 @@ const checkout = () => {
                 >
                   +
                 </button>
-                <button @click="removeFromCart(item.sku_id)">
+                <button
+                  class="flex items-centers"
+                  @click="removeFromCart(item.sku_id)"
+                >
                   <Icon
                     name="mdi:cross-circle-outline"
                     class="text-red-500 h-[2rem] w-[2rem]"
