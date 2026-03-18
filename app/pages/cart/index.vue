@@ -43,6 +43,8 @@ const checkout = () => {
   // Redirection vers la page de paiement
   navigateTo("/checkout");
 };
+
+console.log(cart);
 </script>
 
 <template>
@@ -75,7 +77,7 @@ const checkout = () => {
     </div>
 
     <div v-else class="flex w-full h-full mt-12 gap-8">
-      <div class="flex flex-col gap-8 w-1/2">
+      <div class="flex flex-col gap-8 w-1/2 border-r border-gray-300 p-4">
         <div
           v-for="(item, i) in cart"
           :key="item.sku_id"
@@ -92,6 +94,12 @@ const checkout = () => {
               <span
                 class="w-full flex items-center justify-center text-4xl text-black"
                 >{{ item.name }}</span
+              >
+              <span class="w-full flex text-3xl text-black"
+                >{{ t("pages.cart.size") }}
+                <span class="font-bold ml-2">
+                  {{ getSizeLabelFromItem(item) }}</span
+                ></span
               >
               <span class="text-3xl">{{ item.price }}€</span>
               <div class="flex h-[5rem] items-center">
@@ -125,7 +133,7 @@ const checkout = () => {
         </div>
       </div>
 
-      <div class="w-1/2 flex flex-col gap-8 border-l border-gray-300 p-4">
+      <div class="w-1/2 flex flex-col gap-8 p-4 h-fit sticky top-[10rem]">
         <div class="flex items-center justify-between">
           <h2 class="text-3xl text-bold">
             {{ t("pages.cart.articles") }}

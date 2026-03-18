@@ -155,7 +155,8 @@
       "emptyCart": "Votre panier est vide",
       "totalPrice": "Total :",
       "articles": "Articles :",
-      "checkoutButton": "Passer au paiement"
+      "checkoutButton": "Passer au paiement",
+      "size": "Taille :"
     }
   }
 }

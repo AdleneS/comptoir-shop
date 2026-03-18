@@ -1,6 +1,7 @@
 export const useProducts = () => {
   const supabase = useSupabaseClient();
   const { getProductImages } = useProductImage();
+
   const getProductBySlug = async (slug: string) => {
     const { data: product, error } = await supabase
       .from("products")
@@ -13,7 +14,15 @@ export const useProducts = () => {
       ),
       skus:products_skus (
         id,
-        price
+        price,
+        size:product_attributes!products_skus_size_attribute_id_fkey (
+          id,
+          value
+        ),
+        color:product_attributes!products_skus_color_attribute_id_fkey (
+          id,
+          value
+        )
     )
     `,
         { count: "exact" },

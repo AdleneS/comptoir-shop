@@ -3,6 +3,8 @@ const { t } = useI18n();
 const route = useRoute();
 const { getProductBySlug } = useProducts();
 const activeImage = ref("");
+const activeSize = ref("");
+const activeColor = ref("");
 const { addToCart } = useCart();
 
 useHead({
@@ -21,8 +23,22 @@ const { data: product } = await useAsyncData(
   `product-${route.params.slug}`,
   () => getProductBySlug(route.params.slug as string),
 );
-console.log(product);
+
+const { sizes } = useSizes(product);
+
 activeImage.value = product.value?.images[0] || "";
+activeSize.value = product.value?.skus[0].size.value || "";
+activeColor.value = product.value?.skus[0].color.value || "";
+
+const selectedSku = computed(() => {
+  return product.value?.skus.find((sku) => {
+    return (
+      sku.size.value === activeSize.value
+      // sku.color.value === activeColor.value
+    );
+  });
+});
+console.log(product);
 </script>
 <template>
   <div class="bg-white flex gap-8 justify-center w-full h-full">
@@ -49,10 +65,25 @@ activeImage.value = product.value?.images[0] || "";
       <div class="flex flex-col gap-4">
         <h1 class="text-4xl font-bold mb-4">{{ product.name }}</h1>
         <p class="text-lg mb-6">{{ product.description }}</p>
+        <div>
+          <div class="mb-6 flex gap-8">
+            <div
+              v-for="size in sizes"
+              :class="[
+                'aspect-square w-[4rem] text-lg font-bold cursor-pointer p-4 flex justify-center items-center border border-gray-300',
+                activeSize === size.value ? 'bg-amber-300' : 'bg-white',
+                activeSize !== size.value ? 'hover:bg-gray-100' : '',
+              ]"
+              @click="activeSize = size.value"
+            >
+              {{ size.label }}
+            </div>
+          </div>
+        </div>
         <p class="text-2xl font-semibold">{{ product.skus[0].price }} €</p>
         <button
           class="bg-amber-300 hover:bg-amber-500 text-black font-bold py-2 px-4 rounded"
-          @click="addToCart(product, product.skus[0], 1)"
+          @click="addToCart(product, selectedSku, 1)"
         >
           Ajouter au panier
         </button>

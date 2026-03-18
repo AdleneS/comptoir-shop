@@ -37,7 +37,15 @@ export const useCart = () => {
             product_id,
             products_skus (
               id,
-              price
+              price,
+              size:product_attributes!products_skus_size_attribute_id_fkey (
+                id,
+                value
+              ),
+              color:product_attributes!products_skus_color_attribute_id_fkey (
+                id,
+                value
+              )
             ),
              products (
               name,
@@ -59,8 +67,10 @@ export const useCart = () => {
 
         cart.value =
           cartItems?.map((item) => ({
-            product_id: item.products_skus?.product_id,
+            product_id: item.product_id,
             sku_id: item.product_sku_id,
+            color: item.products_skus.color.value,
+            size: item.products_skus.size.value,
             name: item.products.name, // Vous devrez récupérer le nom via une autre méthode
             slug: item.products.slug, // Vous devrez récupérer le slug via une autre méthode
             price: item.products_skus?.price || 0,
@@ -208,7 +218,6 @@ export const useCart = () => {
           `Erreur de récupération du panier: ${cartError.message}`,
         );
       }
-      console.log(cartData);
 
       if (!cartData) {
         const { data, error } = await supabase
@@ -230,6 +239,7 @@ export const useCart = () => {
           cart_id: cartData.id,
           product_sku_id: item.sku_id,
           quantity: item.quantity,
+          product_id: item.product_id,
         };
         return data;
       });
