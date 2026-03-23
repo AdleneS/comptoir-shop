@@ -134,7 +134,12 @@
         "firstName": "Prénom",
         "lastName": "Nom",
         "email": "E-mail",
-        "updatePasswordButton": "Mettre à jour le mot de passe"
+        "updatePasswordButton": "Mettre à jour le mot de passe",
+        "city": "Ville",
+        "country": "Pays",
+        "address1": "Adresse",
+        "address2": "Complement d'adresse",
+        "postalCode": "Code postale"
       },
       "ordersSection": {
         "title": "Mes commandes",
